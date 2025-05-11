@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -16,6 +17,7 @@ import {
   BarChart,
   LineChart,
   Info,
+  ArrowLeft,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import DataVisualization from "./DataVisualization";
@@ -41,6 +43,7 @@ const AnalyticsDashboard = ({
   isLoading = false,
 }: AnalyticsDashboardProps) => {
   const [activeTab, setActiveTab] = useState("overview");
+  const navigate = useNavigate();
 
   // Mock data for visualizations
   const mockChartData = {
@@ -75,9 +78,19 @@ const AnalyticsDashboard = ({
   return (
     <div className="w-full p-4 space-y-6 bg-background">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-          <p className="text-muted-foreground">Analyzing: {fileName}</p>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => navigate("/dashboard")}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Dashboard
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
+            <p className="text-muted-foreground">Analyzing: {fileName}</p>
+          </div>
         </div>
 
         <div className="flex gap-2">
