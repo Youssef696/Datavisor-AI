@@ -108,10 +108,12 @@ const Login = ({ onLogin }: LoginProps) => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh] bg-background">
-      <Card className="w-full max-w-md">
+    <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-b from-background to-blue-50">
+      <Card className="w-full max-w-md border-blue-100 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+            Login
+          </CardTitle>
           <CardDescription>
             Enter your credentials to access your account
           </CardDescription>

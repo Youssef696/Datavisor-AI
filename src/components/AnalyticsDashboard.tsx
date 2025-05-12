@@ -76,7 +76,7 @@ const AnalyticsDashboard = ({
   }
 
   return (
-    <div className="w-full p-4 space-y-6 bg-background">
+    <div className="w-full p-6 space-y-8 bg-gradient-to-b from-background to-blue-50/30">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div className="flex items-center gap-3">
           <Button
@@ -88,7 +88,9 @@ const AnalyticsDashboard = ({
             Back to Dashboard
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+              Analytics Dashboard
+            </h1>
             <p className="text-muted-foreground">Analyzing: {fileName}</p>
           </div>
         </div>
@@ -107,27 +109,27 @@ const AnalyticsDashboard = ({
 
       <Card>
         <CardHeader>
-          <CardTitle>Data Summary</CardTitle>
+          <CardTitle className="text-xl font-bold">Data Summary</CardTitle>
           <CardDescription>
             Overview of your dataset containing {data.rows} rows and{" "}
             {data.columns.length} columns
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 border rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+            <div className="p-5 border rounded-lg bg-blue-50/50 hover:bg-blue-50 transition-colors">
               <p className="text-sm font-medium text-muted-foreground">
                 Numeric Columns
               </p>
               <p className="text-2xl font-bold">{data.summary.numeric}</p>
             </div>
-            <div className="p-4 border rounded-lg">
+            <div className="p-5 border rounded-lg bg-blue-50/50 hover:bg-blue-50 transition-colors">
               <p className="text-sm font-medium text-muted-foreground">
                 Categorical Columns
               </p>
               <p className="text-2xl font-bold">{data.summary.categorical}</p>
             </div>
-            <div className="p-4 border rounded-lg">
+            <div className="p-5 border rounded-lg bg-blue-50/50 hover:bg-blue-50 transition-colors">
               <p className="text-sm font-medium text-muted-foreground">
                 Temporal Columns
               </p>

@@ -188,7 +188,7 @@ const UserDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-background to-blue-50/30">
       <header className="container mx-auto py-6 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <BarChart3 className="h-8 w-8 text-primary" />
@@ -205,7 +205,7 @@ const UserDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">
+          <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
             Welcome back, {user.name}!
           </h2>
           <p className="text-muted-foreground">
@@ -279,7 +279,7 @@ const UserDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4">
+                <div className="bg-primary/20 p-4 rounded-full mb-4 shadow-inner">
                   <Upload className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Upload File</h3>
@@ -294,7 +294,7 @@ const UserDashboard = () => {
 
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4">
+                <div className="bg-primary/20 p-4 rounded-full mb-4 shadow-inner">
                   <FileSpreadsheet className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">
@@ -311,7 +311,7 @@ const UserDashboard = () => {
 
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="bg-primary/10 p-4 rounded-full mb-4">
+                <div className="bg-primary/20 p-4 rounded-full mb-4 shadow-inner">
                   <FolderOpen className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Manage Folders</h3>

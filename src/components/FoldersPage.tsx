@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from "./ui/dialog";
 import {
   DropdownMenu,
@@ -33,6 +34,7 @@ import {
   Folder,
   ArrowLeft,
   LogOut,
+  Trash2,
 } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 
@@ -52,6 +54,10 @@ interface FileItem {
 }
 
 const FoldersPage = () => {
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<
+    FolderItem | FileItem | null
+  >(null);
   const [user, setUser] = useState<{ name: string; email: string } | null>(
     null,
   );
@@ -268,10 +274,61 @@ const FoldersPage = () => {
     navigate("/analytics");
   };
 
+  const deleteItem = (item: FileItem | FolderItem) => {
+    setItemToDelete(item);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (!itemToDelete) return;
+
+    const updatedFolders = [...folders];
+
+    // If we're in a subfolder
+    if (currentFolder) {
+      const updateNestedItems = (items: (FolderItem | FileItem)[]) => {
+        return items.map((item) => {
+          if (item.id === currentFolder.id && item.type === "folder") {
+            return {
+              ...item,
+              items: item.items.filter((i) => i.id !== itemToDelete.id),
+            };
+          } else if (item.type === "folder") {
+            return {
+              ...item,
+              items: updateNestedItems(item.items),
+            };
+          }
+          return item;
+        });
+      };
+
+      const result = updateNestedItems(updatedFolders);
+      setFolders(result);
+      localStorage.setItem("folders", JSON.stringify(result));
+
+      // Update current folder view
+      setCurrentFolder({
+        ...currentFolder,
+        items: currentFolder.items.filter((i) => i.id !== itemToDelete.id),
+      });
+    } else {
+      // Delete from root level
+      const result = updatedFolders.filter(
+        (item) => item.id !== itemToDelete.id,
+      );
+      setFolders(result);
+      localStorage.setItem("folders", JSON.stringify(result));
+    }
+
+    setIsDeleteDialogOpen(false);
+    setItemToDelete(null);
+  };
+
   const displayItems = currentFolder ? currentFolder.items : folders;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-background to-blue-50/30">
       <header className="container mx-auto py-6 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <BarChart3 className="h-8 w-8 text-primary" />
@@ -292,7 +349,9 @@ const FoldersPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h2 className="text-3xl font-bold mb-2">My Folders</h2>
+            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+              My Folders
+            </h2>
             <div className="flex items-center text-sm text-muted-foreground">
               <Button
                 variant="ghost"
@@ -345,7 +404,7 @@ const FoldersPage = () => {
         </div>
 
         {displayItems.length === 0 ? (
-          <Card className="w-full p-8 text-center">
+          <Card className="w-full p-10 text-center bg-gradient-to-r from-white to-blue-50/50">
             <CardContent>
               <p className="text-muted-foreground mb-4">
                 No items in this folder
@@ -422,7 +481,15 @@ const FoldersPage = () => {
                             <DropdownMenuItem onClick={() => analyzeItem(item)}>
                               Analyze
                             </DropdownMenuItem>
-                            {/* Additional actions would go here */}
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteItem(item);
+                              }}
+                              className="text-destructive"
+                            >
+                              Delete
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
@@ -468,7 +535,7 @@ const FoldersPage = () => {
           </DialogHeader>
           <div
             {...getRootProps()}
-            className="border-2 border-dashed rounded-lg p-8 cursor-pointer hover:border-primary transition-colors"
+            className="border-2 border-dashed rounded-xl p-10 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all duration-300 hover:scale-[1.02]"
           >
             <input {...getInputProps()} />
             <div className="flex flex-col items-center justify-center space-y-4">
@@ -489,6 +556,31 @@ const FoldersPage = () => {
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsUploadOpen(false)}>
               Cancel
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Deletion</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete {itemToDelete?.name}? This action
+              cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              <Trash2 className="h-4 w-4 mr-2" />
+              Delete
             </Button>
           </DialogFooter>
         </DialogContent>

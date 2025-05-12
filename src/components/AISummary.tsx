@@ -42,7 +42,7 @@ const AISummary = ({
   isLoading = false,
 }: AISummaryProps) => {
   return (
-    <Card className="w-full bg-white shadow-md">
+    <Card className="w-full bg-gradient-to-r from-white to-blue-50 shadow-md">
       <CardHeader className="pb-2">
         <CardTitle className="text-xl flex items-center gap-2">
           <span>AI-Generated Summary</span>
@@ -70,7 +70,7 @@ const AISummary = ({
                 {insights.map((insight, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-2 p-2 rounded-md border"
+                    className="flex items-start gap-2 p-3 rounded-md border hover:shadow-sm transition-all duration-200"
                   >
                     {insight.type === "positive" && (
                       <TrendingUp className="h-5 w-5 text-green-500 mt-0.5" />

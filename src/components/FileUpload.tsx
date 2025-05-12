@@ -75,11 +75,11 @@ const FileUpload = ({
           {!file && (
             <div
               {...getRootProps()}
-              className={`border-2 border-dashed rounded-lg p-8 w-full cursor-pointer transition-colors duration-200 ${isDragActive ? "border-primary bg-primary/5" : "border-gray-300"} ${isDragReject ? "border-red-500 bg-red-50" : ""}`}
+              className={`border-2 border-dashed rounded-xl p-10 w-full cursor-pointer transition-all duration-300 ${isDragActive ? "border-primary bg-primary/10 scale-[1.02]" : "border-gray-300"} ${isDragReject ? "border-red-500 bg-red-50" : ""}`}
             >
               <input {...getInputProps()} />
               <div className="flex flex-col items-center justify-center space-y-4">
-                <div className="p-3 rounded-full bg-primary/10">
+                <div className="p-4 rounded-full bg-primary/20 animate-pulse">
                   <Upload className="h-8 w-8 text-primary" />
                 </div>
                 <div className="text-center">
@@ -147,7 +147,10 @@ const FileUpload = ({
 
           {file && !isProcessing && (
             <div className="mt-6 w-full">
-              <Button className="w-full" onClick={() => onFileAccepted(file)}>
+              <Button
+                className="w-full text-base font-semibold"
+                onClick={() => onFileAccepted(file)}
+              >
                 Analyze Data
               </Button>
             </div>

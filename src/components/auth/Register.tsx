@@ -38,7 +38,7 @@ const Register = () => {
 
     try {
       if (name && email && password) {
-        // Register user with Supabase Auth
+        // Register user with Supabase Auth - disable email verification
         const { data: authData, error: authError } = await supabase.auth.signUp(
           {
             email,
@@ -47,6 +47,7 @@ const Register = () => {
               data: {
                 name,
               },
+              emailRedirectTo: window.location.origin + "/dashboard",
             },
           },
         );
@@ -84,10 +85,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh] bg-background">
-      <Card className="w-full max-w-md">
+    <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-b from-background to-blue-50">
+      <Card className="w-full max-w-md border-blue-100 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">Create an Account</CardTitle>
+          <CardTitle className="text-2xl bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+            Create an Account
+          </CardTitle>
           <CardDescription>
             Enter your details to create your account
           </CardDescription>

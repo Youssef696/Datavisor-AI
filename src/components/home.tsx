@@ -16,7 +16,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-slate-50 dark:from-background dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-background to-blue-50 dark:from-background dark:to-slate-900">
       {/* Header */}
       <header className="container mx-auto py-6 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -33,7 +33,7 @@ const Home = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
+      <section className="container mx-auto px-4 py-16 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ const Home = () => {
             transition={{ duration: 0.5 }}
             className="flex flex-col gap-6"
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
               Data Analysis Made Simple for Everyone
             </h2>
             <p className="text-xl text-muted-foreground">
@@ -54,7 +54,7 @@ const Home = () => {
                 className="gap-2"
                 onClick={() => navigate("/register")}
               >
-                Get Started <ArrowRight className="h-4 w-4" />
+                Get Started <ArrowRight className="h-5 w-5 ml-1" />
               </Button>
               <Button
                 size="lg"
@@ -80,12 +80,14 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="container mx-auto px-4 py-16 bg-muted/30 rounded-lg my-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
+      <section className="container mx-auto px-4 py-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm my-16">
+        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent inline-block mx-auto">
+          Key Features
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
             <CardContent className="pt-6 flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-3 rounded-full mb-4">
+              <div className="bg-primary/20 p-3 rounded-full mb-4 shadow-inner">
                 <FileSpreadsheet className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Easy Data Upload</h3>
@@ -98,7 +100,7 @@ const Home = () => {
 
           <Card>
             <CardContent className="pt-6 flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-3 rounded-full mb-4">
+              <div className="bg-primary/20 p-3 rounded-full mb-4 shadow-inner">
                 <PieChart className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-2">
@@ -113,7 +115,7 @@ const Home = () => {
 
           <Card>
             <CardContent className="pt-6 flex flex-col items-center text-center">
-              <div className="bg-primary/10 p-3 rounded-full mb-4">
+              <div className="bg-primary/20 p-3 rounded-full mb-4 shadow-inner">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-2">
@@ -130,10 +132,12 @@ const Home = () => {
 
       {/* How It Works Section */}
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+          How It Works
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="flex flex-col items-center text-center">
-            <div className="bg-primary/10 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center">
+            <div className="bg-primary/20 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center shadow-inner">
               <span className="text-xl font-bold text-primary">1</span>
             </div>
             <h3 className="text-lg font-semibold mb-2">Create an Account</h3>
@@ -143,7 +147,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col items-center text-center">
-            <div className="bg-primary/10 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center">
+            <div className="bg-primary/20 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center shadow-inner">
               <span className="text-xl font-bold text-primary">2</span>
             </div>
             <h3 className="text-lg font-semibold mb-2">Upload Your Data</h3>
@@ -153,7 +157,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col items-center text-center">
-            <div className="bg-primary/10 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center">
+            <div className="bg-primary/20 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center shadow-inner">
               <span className="text-xl font-bold text-primary">3</span>
             </div>
             <h3 className="text-lg font-semibold mb-2">Instant Analysis</h3>
@@ -163,7 +167,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col items-center text-center">
-            <div className="bg-primary/10 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center">
+            <div className="bg-primary/20 p-4 rounded-full mb-4 w-16 h-16 flex items-center justify-center shadow-inner">
               <span className="text-xl font-bold text-primary">4</span>
             </div>
             <h3 className="text-lg font-semibold mb-2">Get Insights</h3>
@@ -181,8 +185,8 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="container mx-auto px-4 py-16 bg-muted/30 rounded-lg my-16">
-        <h2 className="text-3xl font-bold text-center mb-12">
+      <section className="container mx-auto px-4 py-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm my-16">
+        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
           What Our Users Say
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -250,7 +254,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 py-16 mb-16">
-        <Card className="bg-primary text-primary-foreground">
+        <Card className="bg-gradient-to-r from-primary to-blue-700 text-primary-foreground">
           <CardContent className="pt-6 p-8 md:p-12 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">

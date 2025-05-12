@@ -48,7 +48,7 @@ const DataVisualization = ({
     switch (activeChart) {
       case "bar":
         return (
-          <div className="h-64 bg-muted/20 rounded-md flex items-center justify-center">
+          <div className="h-64 bg-gradient-to-b from-blue-50/50 to-white rounded-lg shadow-inner flex items-center justify-center">
             <div className="flex flex-col items-center">
               <BarChart className="h-16 w-16 text-primary mb-4" />
               <p className="text-muted-foreground">Bar Chart Visualization</p>
@@ -60,7 +60,7 @@ const DataVisualization = ({
         );
       case "line":
         return (
-          <div className="h-64 bg-muted/20 rounded-md flex items-center justify-center">
+          <div className="h-64 bg-gradient-to-b from-blue-50/50 to-white rounded-lg shadow-inner flex items-center justify-center">
             <div className="flex flex-col items-center">
               <LineChart className="h-16 w-16 text-primary mb-4" />
               <p className="text-muted-foreground">Line Chart Visualization</p>
@@ -72,7 +72,7 @@ const DataVisualization = ({
         );
       case "pie":
         return (
-          <div className="h-64 bg-muted/20 rounded-md flex items-center justify-center">
+          <div className="h-64 bg-gradient-to-b from-blue-50/50 to-white rounded-lg shadow-inner flex items-center justify-center">
             <div className="flex flex-col items-center">
               <PieChart className="h-16 w-16 text-primary mb-4" />
               <p className="text-muted-foreground">Pie Chart Visualization</p>
@@ -88,7 +88,7 @@ const DataVisualization = ({
   };
 
   return (
-    <Card className="w-full bg-background">
+    <Card className="w-full bg-gradient-to-r from-white to-blue-50">
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           <span>Data Visualization</span>
